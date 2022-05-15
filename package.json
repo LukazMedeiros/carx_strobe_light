@@ -1,0 +1,18 @@
+{
+  "name": "carx_kyno_strobe_lights",
+  "version": "1.0.0",
+  "description": "strobe light for carx with kyno",
+  "main": "./src/main.js",
+  "scripts": {
+    "dev": "electron ."
+  },
+  "keywords": [],
+  "author": "Lucas Medeiros <medeiros.lucas1993@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^18.2.3"
+  },
+  "dependencies": {
+    "@jitsi/robotjs": "^0.6.9"
+  }
+}
