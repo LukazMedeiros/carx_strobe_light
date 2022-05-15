@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu } = require("electron");
 const { keyTap } = require("@jitsi/robotjs");
 const { resolve } = require("path");
 
@@ -8,6 +8,8 @@ let mainwindow;
 
 app.on("ready", () => {
   mainwindow = new BrowserWindow({
+    width: 350,
+    height: 450,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -15,6 +17,7 @@ app.on("ready", () => {
       devTools: true,
     },
   });
+  // mainwindow.setMenu(null);
   mainwindow.loadFile(view);
 });
 

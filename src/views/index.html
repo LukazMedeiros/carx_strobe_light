@@ -5,36 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <title>Carx lights control panel</title>
 </head>
 
 <body>
-
-    <input type="number" name="time" id="time">
-
-    <input type="checkbox" name="start" id="start">
-
-    <script>
-        const { ipcRenderer } = require("electron")
-
-
-
-        const ativo = document.querySelector("#start");
-
-        ativo.addEventListener("click", event => {
-            const time = parseInt(document.querySelector("#time").value)
-            if (ativo.checked) {
-                ipcRenderer.send("start", time)
-                console.log("ativou", time)
-            } else {
-                ipcRenderer.send("stop")
-                console.log("desativou")
-
-            }
-        })
-
-
-    </script>
+    <div class="container">
+        <fieldset>
+            <legend>strobe headlights</legend>
+            <div class="settings">
+                <label for="strobe_headlights">interval time (milliseconds)</label>
+                <input type="number" name="strobe_headlights" id="strobe_headlights" placeholder="1000 = 1 second"
+                    min="0">
+            </div>
+            <div class="switch__container">
+                <label for="strobe_headlights_switch" class="sr__only">headlights_switch</label>
+                <input type="checkbox" name="strobe_headlights_switch" id="strobe_headlights_switch" class="switch">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>random headlights</legend>
+            <div class="settings">
+                <label for="random_headlights">interval time (milliseconds)</label>
+                <input type="number" name="random_headlights" id="random_headlights" placeholder="1000 = 1 second"
+                    min="0">
+            </div>
+            <div class="switch__container">
+                <label for="random_headlights_switch" class="sr__only">headlights_switch</label>
+                <input type="checkbox" name="random_headlights_switch" id="random_headlights_switch" class="switch">
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>strobe underglow</legend>
+            <div class="settings">
+                <label for="strobe_underglow">interval time (milliseconds)</label>
+                <input type="number" name="strobe_underglow" id="strobe_underglow" placeholder="1000 = 1 second"
+                    min="0">
+            </div>
+            <div class="switch__container">
+                <label for="strobe_underglow_switch" class="sr__only">underglow_switch</label>
+                <input type="checkbox" name="strobe_underglow_switch" id="strobe_underglow_switch" class="switch">
+            </div>
+        </fieldset>
+    </div>
 </body>
 
 </html>
