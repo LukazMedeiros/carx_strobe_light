@@ -9,7 +9,7 @@ let mainwindow;
 app.on("ready", () => {
   mainwindow = new BrowserWindow({
     width: 350,
-    height: 450,
+    height: 430,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -17,19 +17,47 @@ app.on("ready", () => {
       devTools: true,
     },
   });
-  // mainwindow.setMenu(null);
+  mainwindow.setMenu(null);
+  mainwindow.setResizable(false);
   mainwindow.loadFile(view);
 });
 
-ipcMain.on("start", (event, time) => {
+ipcMain.on("strobe_headlights_activated", (event, time) => {
   event.preventDefault();
   const interval = setInterval(() => {
     keyTap("pagedown");
-    console.log("rodando", time);
+    console.log("strobe_headlights_activated", time);
   }, time);
 
-  ipcMain.on("stop", (event) => {
+  ipcMain.on("strobe_headlights_disabled", () => {
     clearInterval(interval);
-    console.log("parou");
+    console.log("strobe_headlights_disabled");
+  });
+});
+
+ipcMain.on("random_headlights_activated", (event, time) => {
+  event.preventDefault();
+  const interval = setInterval(() => {
+    const random = Math.floor(Math.random() * 5);
+    random == 0 && keyTap("pagedown");
+    console.log("random_headlights_activated", time);
+  }, time);
+
+  ipcMain.on("random_headlights_disabled", () => {
+    clearInterval(interval);
+    console.log("random_headlights_disabled");
+  });
+});
+
+ipcMain.on("strobe_underglow_activated", (event, time) => {
+  event.preventDefault();
+  const interval = setInterval(() => {
+    keyTap("end");
+    console.log("strobe_underglow_activated", time);
+  }, time);
+
+  ipcMain.on("strobe_underglow_disabled", () => {
+    clearInterval(interval);
+    console.log("strobe_underglow_disabled");
   });
 });
