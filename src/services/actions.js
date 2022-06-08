@@ -12,6 +12,8 @@ const strobeUnderglowSwitch = document.querySelector(
   "#strobe_underglow_switch"
 );
 
+const closeButton = document.querySelector("#close");
+
 const strobeHeadlights = document.querySelector("#strobe_headlights");
 const randomHeadlights = document.querySelector("#random_headlights");
 const strobeUnderglow = document.querySelector("#strobe_underglow");
@@ -47,4 +49,8 @@ strobeUnderglowSwitch.addEventListener("click", () => {
     console.log("Strobe Underglow disabled");
     ipcRenderer.send("strobe_underglow_disabled");
   }
+});
+
+closeButton.addEventListener("click", () => {
+  ipcRenderer.send("close");
 });

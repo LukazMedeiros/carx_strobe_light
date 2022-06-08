@@ -10,6 +10,8 @@ app.on("ready", () => {
   mainwindow = new BrowserWindow({
     width: 350,
     height: 430,
+    transparent: true,
+    frame: false,
     webPreferences: {
       contextIsolation: false,
       nodeIntegration: true,
@@ -20,6 +22,7 @@ app.on("ready", () => {
   mainwindow.setMenu(null);
   mainwindow.setResizable(false);
   mainwindow.loadFile(view);
+  mainwindow.setIgnoreMouseEvents(false); //para conseguir arrastar a janela, é necessário adicionar um elemento com a propriedade css drag
 });
 
 ipcMain.on("strobe_headlights_activated", (event, time) => {
@@ -60,4 +63,9 @@ ipcMain.on("strobe_underglow_activated", (event, time) => {
     clearInterval(interval);
     console.log("strobe_underglow_disabled");
   });
+});
+
+ipcMain.on("close", (event) => {
+  event.preventDefault();
+  app.quit();
 });
